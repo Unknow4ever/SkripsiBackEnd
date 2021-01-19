@@ -1,0 +1,30 @@
+package main.java.databaseModel;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class Chat {
+	@Id
+	@Column(name="chat_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer chatId;
+	
+	@Column(name="order_id",length=100,nullable=false)
+	private Integer orderId;
+
+	@Column(name="user_id",length=100,nullable=false)
+	private Integer userId;
+	
+	@Column(name="comment",length=300,nullable=false)
+	private String comment;
+	
+	@Column(name="create_date",nullable=false)
+	private Date createdDate;
+	
+	@Column(name="update_date",nullable=false)
+	private Date updateDate;
+}

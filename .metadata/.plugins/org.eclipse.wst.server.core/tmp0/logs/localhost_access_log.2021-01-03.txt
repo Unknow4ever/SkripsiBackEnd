@@ -1,0 +1,14 @@
+127.0.0.1 - - [03/Jan/2021:12:27:56 +0700] "GET / HTTP/1.1" 404 706
+192.168.1.100 - - [03/Jan/2021:12:32:05 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 298
+192.168.1.100 - - [03/Jan/2021:12:32:05 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 112
+192.168.1.100 - - [03/Jan/2021:12:32:05 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [03/Jan/2021:12:32:05 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [03/Jan/2021:12:32:10 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 298
+192.168.1.100 - - [03/Jan/2021:12:32:11 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 112
+192.168.1.100 - - [03/Jan/2021:12:32:11 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [03/Jan/2021:12:32:11 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [03/Jan/2021:12:33:38 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 80
+117.192.224.180 - - [03/Jan/2021:13:13:29 +0700] "GET /boaform/admin/formLogin?username=admin&psd=admin HTTP/1.0" 404 729
+78.108.177.53 - - [03/Jan/2021:13:19:31 +0700] "GET / HTTP/1.0" 404 706
+167.248.133.37 - - [03/Jan/2021:13:46:15 +0700] "GET / HTTP/1.1" 404 706
+167.248.133.37 - - [03/Jan/2021:13:46:16 +0700] "GET / HTTP/1.1" 404 706

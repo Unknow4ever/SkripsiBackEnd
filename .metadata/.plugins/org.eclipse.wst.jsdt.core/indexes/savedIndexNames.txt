@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+E:\Project\Java\Eclipse\SkripsiBackEnd\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1006741172.index
+1876487964.index
+3889148692.index
+1454855218.index
+1488837175.index
+668237716.index

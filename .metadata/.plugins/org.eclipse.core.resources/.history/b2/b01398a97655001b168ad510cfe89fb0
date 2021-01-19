@@ -1,0 +1,5 @@
+package main.java.jsonModel.detailModel;
+
+public class ChatJson {
+
+}

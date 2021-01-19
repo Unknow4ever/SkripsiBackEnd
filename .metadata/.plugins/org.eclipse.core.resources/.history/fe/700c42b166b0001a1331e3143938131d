@@ -1,0 +1,192 @@
+package main.java.logic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import com.google.gson.JsonObject;
+
+import main.java.GlobalVal.ResultValue;
+import main.java.HibernateUtil.HibernateUtil;
+import main.java.databaseModel.Restaurant;
+import main.java.databaseModel.RestaurantRating;
+import main.java.databaseModel.UserData;
+import main.java.jsonModel.Request.NearbyRestaurantRequest;
+import main.java.jsonModel.Request.RegisterRestaurantRequest;
+import main.java.jsonModel.Request.RestaurantDetailRequest;
+import main.java.jsonModel.Request.RestaurantRatingRequest;
+import main.java.jsonModel.Request.InsertRestaurantRatingRequest;
+import main.java.jsonModel.Response.NearbyRestaurantResponse;
+import main.java.jsonModel.Response.RegisterRestaurantResponse;
+import main.java.jsonModel.Response.RestaurantDetailResponse;
+import main.java.jsonModel.Response.RestaurantRatingResponse;
+import main.java.jsonModel.detailModel.FoodJson;
+import main.java.jsonModel.detailModel.RestaurantCommentJson;
+import main.java.jsonModel.detailModel.RestaurantJson;
+import main.java.jsonModel.detailModel.RestaurantRatingJson;
+import main.java.jsonModel.detailModel.ResultResponse;
+
+public class RestaurantManagement {
+	ResultValue resultValue = new ResultValue();
+
+	public NearbyRestaurantResponse NearbyRestaurant(NearbyRestaurantRequest request) {
+		NearbyRestaurantResponse result = new NearbyRestaurantResponse();
+		
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Criteria query = session.createCriteria(Restaurant.class);
+			
+			query.add(Restrictions.gt("latitude", request.getMinLatitude()));
+			query.add(Restrictions.gt("longitude", request.getMinLongitude()));
+			query.add(Restrictions.lt("latitude", request.getMaxLatitude()));
+			query.add(Restrictions.lt("longitude", request.getMaxLongitude()));
+			
+			List<Restaurant> restaurant = query.list();
+			
+			if(restaurant.size() > 0) {
+				ResultResponse resultResponse = new ResultResponse();
+				resultResponse.setMessage("Mengambil list restoran berhasil");
+				resultResponse.setStatus(resultValue.success);				
+				
+				result.setResultResponse(resultResponse);
+				result.setFromQuery(restaurant);
+			}
+			else {
+				ResultResponse resultResponse = new ResultResponse();
+				resultResponse.setMessage("Tidak ditemukan restoran disekitar anda");
+				resultResponse.setStatus(resultValue.failed);
+				
+				result.setResultResponse(resultResponse);
+			}
+			
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage("Terjadi masalah saat mengambil data");
+			resultResponse.setStatus(resultValue.failed);
+		} 
+		
+		return result;
+	}
+	
+	public RegisterRestaurantResponse RegisterRestaurant(RegisterRestaurantRequest request) {
+		RegisterRestaurantResponse result = new RegisterRestaurantResponse();	
+		
+		try {
+			Restaurant restaurant = new Restaurant();
+			restaurant.setFromRequest(request);
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.save(restaurant);
+			session.getTransaction().commit();
+			
+						
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage(String.format("Berhasil mendaftarkan restoran %s ", request.getRestaurantName()));
+			resultResponse.setStatus(resultValue.success);				
+				
+			result.setResultResponse(resultResponse);				
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage("Terjadi masalah saat mendaftarkan restoran");
+			resultResponse.setStatus(resultValue.failed);
+			
+			result.setResultResponse(resultResponse);
+		}
+		
+		return result;
+	}
+	
+	public RestaurantDetailResponse RestaurantDetail(RestaurantDetailRequest request) {
+		RestaurantDetailResponse result = new RestaurantDetailResponse();
+		
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Criteria query = session.createCriteria(Restaurant.class);			
+			query.add(Restrictions.eq("restaurantId", request.getRestaurantId()));
+			
+			RestaurantJson restaurantJson = new RestaurantJson();
+			List<Restaurant> restaurant = query.list();			
+			restaurantJson.setFromQuery(restaurant.get(0));
+			
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage("Mengambil detail restoran berhasil");
+			resultResponse.setStatus(resultValue.success);	
+			
+			RestaurantCommentManagement commentLogic = new RestaurantCommentManagement();
+			List<RestaurantCommentJson> restaurantCommentJson = commentLogic.getCommentList(request.getRestaurantId());
+			
+			FoodManagement foodLogic = new FoodManagement();
+			List<FoodJson> foodJson = foodLogic.GetListFromRestaurant(request.getRestaurantId());		
+			
+			result.setRestaurantJson(restaurantJson);
+			result.setResultResponse(resultResponse);
+			result.setRestaurantCommentJson(restaurantCommentJson);
+			result.setFoodJson(foodJson);
+			
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage("Terjadi masalah saat mengambil data restoran");
+			resultResponse.setStatus(resultValue.failed);
+			
+			result.setResultResponse(resultResponse);
+		}
+		
+		return result;
+	}
+	
+	public RestaurantRatingResponse RestaurantRating(RestaurantRatingRequest request) {
+		RestaurantRatingResponse result = new RestaurantRatingResponse();
+		
+		try {			
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage("berhasil mengambil rating restoran");
+			resultResponse.setStatus(resultValue.success);			
+			
+			result.setResultResponse(resultResponse);
+			result.setRestaurantRatingJson(getRestaurantRating(request.getRestaurantId()));
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage("Terjadi masalah saat mengambil rating restoran");
+			resultResponse.setStatus(resultValue.failed);
+			
+			result.setResultResponse(resultResponse);
+		}
+		
+		return result;
+	}
+	
+	public RestaurantRatingJson getRestaurantRating(int restaurantId) {
+		RestaurantRatingJson result = new RestaurantRatingJson();
+		
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Criteria query = session.createCriteria(RestaurantRating.class);			
+			query.add(Restrictions.eq("restaurantId", restaurantId));
+			
+			List<InsertRestaurantRatingRequest> data = query.list();
+			
+			int totalRating = 0;
+			
+			if(data.size() > 0) {
+				for(int i=0;i<data.size();i++) {
+					totalRating = totalRating + data.get(i).getRating();
+				}
+				
+				result.setRating(Double.valueOf(totalRating / data.size()));
+				result.setUserNumber(data.size());
+			}
+			else {
+				result.setRating(0.0);
+				result.setUserNumber(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+}

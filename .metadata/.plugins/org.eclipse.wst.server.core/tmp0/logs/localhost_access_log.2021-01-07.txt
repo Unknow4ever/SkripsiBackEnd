@@ -1,0 +1,24 @@
+127.0.0.1 - - [07/Jan/2021:12:14:02 +0700] "GET / HTTP/1.1" 404 706
+192.168.1.100 - - [07/Jan/2021:12:15:26 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [07/Jan/2021:12:15:26 +0700] "POST /SkripsiBackEnd/RestaurantService/getlist HTTP/1.1" 200 353785
+192.168.1.100 - - [07/Jan/2021:12:17:24 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 316
+192.168.1.100 - - [07/Jan/2021:12:17:25 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 314500
+192.168.1.100 - - [07/Jan/2021:12:17:25 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [07/Jan/2021:12:17:25 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+2.187.65.156 - - [07/Jan/2021:12:43:23 +0700] "GET / HTTP/1.1" 404 706
+167.248.133.38 - - [07/Jan/2021:13:44:14 +0700] "GET / HTTP/1.1" 404 706
+167.248.133.38 - - [07/Jan/2021:13:44:15 +0700] "GET / HTTP/1.1" 404 706
+45.229.55.3 - - [07/Jan/2021:13:48:03 +0700] "GET /boaform/admin/formLogin?username=ec8&psd=ec8 HTTP/1.0" 404 729
+117.194.67.142 - - [07/Jan/2021:14:14:41 +0700] "POST /tmUnblock.cgi HTTP/1.1" 404 719
+117.194.67.142 - - [07/Jan/2021:14:14:41 +0700] "-" 400 -
+78.108.177.53 - - [07/Jan/2021:14:54:20 +0700] "GET / HTTP/1.0" 404 706
+46.174.191.31 - - [07/Jan/2021:15:05:09 +0700] "GET / HTTP/1.0" 404 706
+41.215.130.150 - - [07/Jan/2021:15:15:58 +0700] "GET / HTTP/1.1" 404 706
+178.72.71.186 - - [07/Jan/2021:15:21:54 +0700] "GET /boaform/admin/formLogin?username=adminisp&psd=adminisp HTTP/1.0" 404 729
+104.152.52.70 - - [07/Jan/2021:15:26:44 +0700] "GET / HTTP/1.0" 404 706
+37.46.150.227 - - [07/Jan/2021:15:45:51 +0700] "GET /config/getuser?index=0 HTTP/1.1" 404 720
+36.68.20.225 - - [07/Jan/2021:15:54:25 +0700] "GET / HTTP/1.1" 404 706
+207.154.244.172 - - [07/Jan/2021:16:47:56 +0700] "GET /login HTTP/1.0" 404 711
+207.154.244.172 - - [07/Jan/2021:16:47:56 +0700] "GET /manager/html HTTP/1.0" 404 718
+107.175.44.64 - - [07/Jan/2021:17:01:41 +0700] "GET / HTTP/1.1" 404 706
+46.174.191.32 - - [07/Jan/2021:18:02:39 +0700] "GET / HTTP/1.0" 404 706

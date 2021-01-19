@@ -1,0 +1,80 @@
+package main.java.controller;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import main.java.jsonModel.Request.NearbyRestaurantRequest;
+import main.java.jsonModel.Request.RegisterRestaurantRequest;
+import main.java.jsonModel.Response.LoginResponse;
+import main.java.jsonModel.Response.NearbyRestaurantResponse;
+import main.java.jsonModel.Response.RegisterRestaurantResponse;
+import main.java.jsonModel.detailModel.ResultResponse;
+import main.java.logic.RestaurantManagement;
+import main.java.logic.UserManagement;
+
+@Path("/RestaurantService")
+public class RestaurantService {
+	@POST
+	@Path("/getlist")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response nearbyRestaurant(String data) {
+		JsonObject request = new JsonParser().parse(data).getAsJsonObject();
+		NearbyRestaurantResponse nearbyRestaurantResponse = new NearbyRestaurantResponse();
+		
+		try {
+			NearbyRestaurantRequest nearbyRestaurantRequest = new NearbyRestaurantRequest();
+			nearbyRestaurantRequest.setFromJson(request);
+			
+			RestaurantManagement nearby = new RestaurantManagement();
+			nearbyRestaurantResponse = nearby.NearbyRestaurant(nearbyRestaurantRequest);
+			
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setStatus("failed");
+			resultResponse.setMessage("Data tidak sesuai");
+			nearbyRestaurantResponse.setResultResponse(resultResponse);
+		}
+		
+		Gson gson = new Gson();
+		String result = gson.toJson(nearbyRestaurantResponse);
+		
+		return Response.status(200).entity(result).build();
+	}
+	
+	@POST
+	@Path("/register")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registerRestaurant(String data) {
+		JsonObject request = new JsonParser().parse(data).getAsJsonObject();
+		RegisterRestaurantResponse registerRestaurantResponse = new RegisterRestaurantResponse();
+		
+		try {
+			RegisterRestaurantRequest nearbyRestaurantRequest = new RegisterRestaurantRequest();
+			nearbyRestaurantRequest.setFromJson(request);
+			
+			RestaurantManagement register = new RestaurantManagement();
+			//registerRestaurantResponse = register.NearbyRestaurant(nearbyRestaurantRequest);
+			
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setStatus("failed");
+			resultResponse.setMessage("Data tidak sesuai");
+			registerRestaurantResponse.setResultResponse(resultResponse);
+		}
+		
+		Gson gson = new Gson();
+		String result = gson.toJson(registerRestaurantResponse);
+		
+		return Response.status(200).entity(result).build();
+	}
+}

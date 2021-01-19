@@ -1,0 +1,5 @@
+package main.java.jsonModel.Request;
+
+public class ChatViewRequest {
+
+}

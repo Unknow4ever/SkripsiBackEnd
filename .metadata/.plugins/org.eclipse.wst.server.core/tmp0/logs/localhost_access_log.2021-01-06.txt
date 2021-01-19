@@ -1,0 +1,9 @@
+127.0.0.1 - - [06/Jan/2021:14:37:45 +0700] "GET / HTTP/1.1" 404 706
+192.168.1.100 - - [06/Jan/2021:14:40:34 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [06/Jan/2021:14:40:34 +0700] "POST /SkripsiBackEnd/RestaurantService/getlist HTTP/1.1" 200 353785
+192.168.1.100 - - [06/Jan/2021:14:40:38 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 316
+192.168.1.100 - - [06/Jan/2021:14:40:38 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 314500
+192.168.1.100 - - [06/Jan/2021:14:40:38 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [06/Jan/2021:14:40:38 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+105.112.136.217 - - [06/Jan/2021:15:47:22 +0700] "GET / HTTP/1.0" 404 706
+27.102.134.113 - - [06/Jan/2021:16:06:15 +0700] "GET / HTTP/1.1" 404 706

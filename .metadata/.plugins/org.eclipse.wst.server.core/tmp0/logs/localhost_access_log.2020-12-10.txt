@@ -1,0 +1,27 @@
+127.0.0.1 - - [10/Dec/2020:14:18:07 +0700] "GET / HTTP/1.1" 404 706
+165.16.37.150 - - [10/Dec/2020:14:20:57 +0700] "GET / HTTP/1.1" 404 706
+192.168.1.100 - - [10/Dec/2020:14:24:40 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 316
+192.168.1.100 - - [10/Dec/2020:14:24:43 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 316
+192.168.1.100 - - [10/Dec/2020:14:24:44 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 316
+192.168.1.100 - - [10/Dec/2020:14:24:47 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 314500
+192.168.1.100 - - [10/Dec/2020:14:24:47 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 314500
+192.168.1.100 - - [10/Dec/2020:14:24:48 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [10/Dec/2020:14:24:48 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [10/Dec/2020:14:24:48 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [10/Dec/2020:14:24:48 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [10/Dec/2020:14:24:48 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [10/Dec/2020:14:24:50 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 316
+192.168.1.100 - - [10/Dec/2020:14:24:50 +0700] "POST /SkripsiBackEnd/RestaurantService/getlist HTTP/1.1" 200 353785
+192.168.1.100 - - [10/Dec/2020:14:24:50 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 314500
+192.168.1.100 - - [10/Dec/2020:14:24:50 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [10/Dec/2020:14:24:50 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+109.234.153.134 - - [10/Dec/2020:14:34:08 +0700] "POST /azenv.php?s=VJVJVEIINXVJVRTCPEKJNEYBUBKIYR HTTP/1.1" 404 715
+109.234.153.131 - - [10/Dec/2020:14:34:08 +0700] "CONNECT 5.178.86.76:80 HTTP/1.1" 400 -
+109.234.153.134 - - [10/Dec/2020:14:34:09 +0700] "-" 400 -
+109.234.153.133 - - [10/Dec/2020:14:34:13 +0700] "-" 400 -
+192.168.1.100 - - [10/Dec/2020:15:04:04 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
+192.168.1.100 - - [10/Dec/2020:15:04:04 +0700] "POST /SkripsiBackEnd/RestaurantService/getlist HTTP/1.1" 200 353785
+192.168.1.100 - - [10/Dec/2020:15:04:31 +0700] "POST /SkripsiBackEnd/UserService/userdata HTTP/1.1" 200 316
+192.168.1.100 - - [10/Dec/2020:15:04:31 +0700] "POST /SkripsiBackEnd/RestaurantService/restaurantlistbyuser HTTP/1.1" 200 314500
+192.168.1.100 - - [10/Dec/2020:15:04:31 +0700] "POST /SkripsiBackEnd/OrderService/ordernumbersbyuser HTTP/1.1" 200 105
+192.168.1.100 - - [10/Dec/2020:15:04:31 +0700] "POST /SkripsiBackEnd/UtilityService/getvalue HTTP/1.1" 200 18490
