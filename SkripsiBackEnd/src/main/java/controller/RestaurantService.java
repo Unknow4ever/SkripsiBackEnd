@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import main.java.jsonModel.Request.ConfirmRestaurantRequest;
 import main.java.jsonModel.Request.DeleteRestaurantRequest;
 import main.java.jsonModel.Request.InsertRestaurantRatingRequest;
 import main.java.jsonModel.Request.NearbyRestaurantRequest;
@@ -20,6 +21,7 @@ import main.java.jsonModel.Request.RestaurantListByUserRequest;
 import main.java.jsonModel.Request.RestaurantRatingByUserRequest;
 import main.java.jsonModel.Request.RestaurantRatingRequest;
 import main.java.jsonModel.Request.UpdateRestaurantRequest;
+import main.java.jsonModel.Response.ConfirmRestaurantResponse;
 import main.java.jsonModel.Response.DeleteRestaurantResponse;
 import main.java.jsonModel.Response.InsertRestaurantRatingResponse;
 import main.java.jsonModel.Response.LoginResponse;
@@ -284,6 +286,34 @@ public class RestaurantService {
 		
 		Gson gson = new Gson();
 		String result = gson.toJson(insertRestaurantRatingResponse);
+		
+		return Response.status(200).entity(result).build();
+	}
+	
+	@POST
+	@Path("/confirmrestaurant")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response ConfirmRestaurant(String data) {
+		JsonObject request = new JsonParser().parse(data).getAsJsonObject();
+		ConfirmRestaurantResponse confirmRestaurantResponse = new ConfirmRestaurantResponse();
+		
+		try {
+			ConfirmRestaurantRequest confirmRestaurantRequest = new ConfirmRestaurantRequest();
+			confirmRestaurantRequest.setFromJson(request);
+			
+			RestaurantManagement status = new RestaurantManagement();
+			confirmRestaurantResponse = status.ConfirmRestaurant(confirmRestaurantRequest);
+			
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setStatus("failed");
+			resultResponse.setMessage("Data tidak sesuai");
+			confirmRestaurantResponse.setResultResponse(resultResponse);
+		}
+		
+		Gson gson = new Gson();
+		String result = gson.toJson(confirmRestaurantResponse);
 		
 		return Response.status(200).entity(result).build();
 	}

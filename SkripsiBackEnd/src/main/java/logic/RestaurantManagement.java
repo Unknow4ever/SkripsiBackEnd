@@ -23,8 +23,10 @@ import main.java.jsonModel.Request.RestaurantListByUserRequest;
 import main.java.jsonModel.Request.RestaurantRatingByUserRequest;
 import main.java.jsonModel.Request.RestaurantRatingRequest;
 import main.java.jsonModel.Request.UpdateRestaurantRequest;
+import main.java.jsonModel.Request.ConfirmRestaurantRequest;
 import main.java.jsonModel.Request.DeleteRestaurantRequest;
 import main.java.jsonModel.Request.InsertRestaurantRatingRequest;
+import main.java.jsonModel.Response.ConfirmRestaurantResponse;
 import main.java.jsonModel.Response.DeleteRestaurantResponse;
 import main.java.jsonModel.Response.InsertRestaurantRatingResponse;
 import main.java.jsonModel.Response.NearbyRestaurantResponse;
@@ -159,6 +161,7 @@ public class RestaurantManagement {
 			query.add(Restrictions.lt("latitude", maxLat));
 			query.add(Restrictions.lt("longitude", maxLong));
 			query.add(Restrictions.eq("active", 1));
+			query.add(Restrictions.eq("status", 2));
 			
 			List<Restaurant> restaurant = query.list();
 			
@@ -508,6 +511,44 @@ public class RestaurantManagement {
 		} catch (Exception e) {
 			ResultResponse resultResponse = new ResultResponse();
 			resultResponse.setMessage("Terjadi masalah saat menghapus restoran");
+			resultResponse.setStatus(resultValue.failed);
+			
+			result.setResultResponse(resultResponse);
+		}
+		
+		return result;
+	}
+	
+	public ConfirmRestaurantResponse ConfirmRestaurant(ConfirmRestaurantRequest request) {
+		ConfirmRestaurantResponse result = new ConfirmRestaurantResponse();
+		
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Criteria query = session.createCriteria(Restaurant.class);			
+			query.add(Restrictions.eq("restaurantId", request.getRestaurantId()));
+			
+			List<Restaurant> restaurant = query.list();
+			
+			Restaurant status = restaurant.get(0);
+			status.setStatus(request.getStatus());
+			session.beginTransaction();
+			session.update(status);
+			session.getTransaction().commit();
+			
+			ResultResponse resultResponse = new ResultResponse();
+			if(request.getStatus() == 2) {
+				resultResponse.setMessage("berhasil konfirmasi restoran");
+			}
+			else if(request.getStatus() == 3) {
+				resultResponse.setMessage("berhasil menolak konfirmasi restoran");
+			}
+			
+			resultResponse.setStatus(resultValue.success);
+			
+			result.setResultResponse(resultResponse);
+		} catch (Exception e) {
+			ResultResponse resultResponse = new ResultResponse();
+			resultResponse.setMessage("Terjadi masalah saat konfirmasi restoran");
 			resultResponse.setStatus(resultValue.failed);
 			
 			result.setResultResponse(resultResponse);
